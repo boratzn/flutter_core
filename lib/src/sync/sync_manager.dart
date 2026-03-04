@@ -13,7 +13,9 @@ class SyncManager {
   Future<void> init() async {
     _actionBox = await Hive.openBox<PendingAction>('pending_actions');
 
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    Connectivity().onConnectivityChanged.listen((
+      List<ConnectivityResult> result,
+    ) {
       if (result != ConnectivityResult.none) {
         processQueue();
       }
